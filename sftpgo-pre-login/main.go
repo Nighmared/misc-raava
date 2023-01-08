@@ -39,6 +39,7 @@ const (
 func main() {
 	logged_in_user := os.Getenv("SFTPGO_LOGIND_USER")
 	login_protocol := os.Getenv("SFTPGO_LOGIND_PROTOCOL")
+	login_ip := os.Getenv("SFTPGO_LOGIND_IP")
 	if login_protocol != "OIDC" {
 		//ignore for other auth methods
 		return
@@ -50,7 +51,19 @@ func main() {
 	fmt.Printf(`"username":"%s",`, parsed_user.Username)
 	fmt.Printf(`"email":"%s",`, parsed_user.Email)
 	fmt.Printf(`"home_dir":"/srv/sftpgo/data/%s",`, parsed_user.Username)
-	fmt.Printf(`"quota_size":%d`, fifty_gigabyte)
+	fmt.Printf(`"quota_size":%d,`, fifty_gigabyte)
+	fmt.Print(`"description":"oidc user",`)
+	fmt.Printf(`"additional_info":"last logged in from %s",`, login_ip)
+	fmt.Print(`"groups": [`)
+	fmt.Print(`{`)
+	fmt.Print(`"name":"keycloak-users",`)
+	fmt.Print(`"type":1`)
+	fmt.Print(`}`)
+	fmt.Print("],")
+	fmt.Print(`"permissions": {`)
+	fmt.Print(`"/": [`)
+	fmt.Print(`"*"`)
+	fmt.Print(`]`)
 	fmt.Print(("}"))
 
 }
