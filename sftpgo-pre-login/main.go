@@ -50,7 +50,7 @@ func main() {
 	fmt.Printf(`"username":"%s",`, parsed_user.Username)
 	fmt.Printf(`"email":"%s",`, parsed_user.Email)
 	fmt.Printf(`"home_dir":"/srv/sftpgo/data/%s",`, parsed_user.Username)
-	fmt.Printf(`"quota_size":%d,`, fifty_gigabyte)
+	fmt.Printf(`"quota_size":%d`, fifty_gigabyte)
 	fmt.Print(("}"))
 
 }
