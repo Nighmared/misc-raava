@@ -41,6 +41,6 @@ func main() {
 	}
 	var parsed_user user
 	json.Unmarshal([]byte(logged_in_user), &parsed_user)
-	fmt.Fprint(os.Stderr, parsed_user)
+	fmt.Println(parsed_user)
 
 }
