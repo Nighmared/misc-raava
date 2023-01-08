@@ -56,7 +56,7 @@ func main() {
 	fmt.Printf(`"additional_info":"last logged in from %s",`, login_ip)
 	fmt.Print(`"groups": [`)
 	fmt.Print(`{`)
-	fmt.Print(`"name":"keycloak-users",`)
+	fmt.Print(`"name":"keycloak_users",`)
 	fmt.Print(`"type":1`)
 	fmt.Print(`}`)
 	fmt.Print("],")
