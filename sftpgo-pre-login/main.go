@@ -46,11 +46,11 @@ func main() {
 	var parsed_user user
 	json.Unmarshal([]byte(logged_in_user), &parsed_user)
 	fmt.Print("{")
-	fmt.Print("\"status\":1,")
-	fmt.Printf("\"username\":\"%s\",", parsed_user.Username)
-	fmt.Printf("\"email\":\"%s\",", parsed_user.Email)
-	fmt.Printf("\"home_dir\":\"/srv/sftpgo/data/%s\",", parsed_user.Username)
-	fmt.Printf("\"quota_size\":%d,", fifty_gigabyte)
+	fmt.Print(`"status":1,`)
+	fmt.Printf(`"username\":"%s",`, parsed_user.Username)
+	fmt.Printf(`"email":"%s",`, parsed_user.Email)
+	fmt.Printf(`"home_dir":"/srv/sftpgo/data/%s",`, parsed_user.Username)
+	fmt.Printf(`"quota_size":%d,`, fifty_gigabyte)
 	fmt.Print(("}"))
 
 }
