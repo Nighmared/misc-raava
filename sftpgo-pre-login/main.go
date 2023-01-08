@@ -6,28 +6,16 @@ import (
 	"os"
 )
 
-type folder struct {
-	Id                int
-	Name              string
-	Mapped_path       string
-	Description       string
-	Used_quota_size   int
-	Used_quota_files  int
-	Last_quota_update int
-	Users             []string
+type Customfields struct {
+	Storage_access bool
 }
 
 type user struct {
-	Id              int
-	Status          int
-	Username        string
-	Email           string
-	Description     string
-	Expiration_date int
-	Password        string
-	Public_keys     []string
-	Home_dir        string
-	Virtual_folders []folder
+	Id                 int
+	Status             int
+	Username           string
+	Email              string
+	Oidc_custom_fields Customfields
 	//..... many more but do i even need that?
 
 }
@@ -46,6 +34,17 @@ func main() {
 	}
 	var parsed_user user
 	json.Unmarshal([]byte(logged_in_user), &parsed_user)
+	if parsed_user.Id != 0 {
+		fmt.Printf(`{"additional_info":"last logged in from %s"}`, login_ip)
+		//no need for all of the info if user already exists
+		return
+	}
+	if !parsed_user.Oidc_custom_fields.Storage_access {
+		//user isnt supposed to have storage access...
+		fmt.Print(`{"status":0}`)
+		return
+	}
+
 	fmt.Print("{")
 	fmt.Print(`"status":1,`)
 	fmt.Printf(`"username":"%s",`, parsed_user.Username)
