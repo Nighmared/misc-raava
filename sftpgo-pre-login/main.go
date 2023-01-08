@@ -32,15 +32,25 @@ type user struct {
 
 }
 
+const (
+	fifty_gigabyte = 50000000000
+)
+
 func main() {
 	logged_in_user := os.Getenv("SFTPGO_LOGIND_USER")
 	login_protocol := os.Getenv("SFTPGO_LOGIND_PROTOCOL")
 	if login_protocol != "OIDC" {
-		fmt.Println(login_protocol)
+		//ignore for other auth methods
 		return
 	}
 	var parsed_user user
 	json.Unmarshal([]byte(logged_in_user), &parsed_user)
-	fmt.Println("\n\n\n>>>>>>>>>>>>>>>>>>>>" + parsed_user.Username + "<<<<<<<<<<<<<<<<<<<<<<<<\n\n\n")
+	fmt.Print("{")
+	fmt.Print("\"status\":1,")
+	fmt.Printf("\"username\":\"%s\",", parsed_user.Username)
+	fmt.Printf("\"email\":\"%s\",", parsed_user.Email)
+	fmt.Printf("\"home_dir\":\"/srv/sftpgo/data/%s\",", parsed_user.Username)
+	fmt.Printf("\"quota_size\":%d,", fifty_gigabyte)
+	fmt.Print(("}"))
 
 }
