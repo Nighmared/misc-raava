@@ -45,6 +45,8 @@ func main() {
 		return
 	}
 
+	fmt.Print(parsed_user)
+
 	fmt.Print("{")
 	fmt.Print(`"status":1,`)
 	fmt.Printf(`"username":"%s",`, parsed_user.Username)
