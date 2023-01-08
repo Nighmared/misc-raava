@@ -7,27 +7,27 @@ import (
 )
 
 type folder struct {
-	id                int
-	name              string
-	mapped_path       string
-	description       string
-	used_quota_size   int
-	used_quota_files  int
-	last_quota_update int
-	users             []string
+	Id                int
+	Name              string
+	Mapped_path       string
+	Description       string
+	Used_quota_size   int
+	Used_quota_files  int
+	Last_quota_update int
+	Users             []string
 }
 
 type user struct {
-	id              int
-	status          int
-	username        string
-	email           string
-	description     string
-	expiration_date int
-	password        string
-	public_keys     []string
-	home_dir        string
-	virtual_folders []folder
+	Id              int
+	Status          int
+	Username        string
+	Email           string
+	Description     string
+	Expiration_date int
+	Password        string
+	Public_keys     []string
+	Home_dir        string
+	Virtual_folders []folder
 	//..... many more but do i even need that?
 
 }
@@ -40,6 +40,6 @@ func main() {
 	}
 	var parsed_user user
 	json.Unmarshal([]byte(logged_in_user), &parsed_user)
-	fmt.Println(parsed_user)
+	fmt.Fprint(os.Stderr, parsed_user)
 
 }
