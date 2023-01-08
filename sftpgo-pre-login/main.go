@@ -36,6 +36,7 @@ func main() {
 	logged_in_user := os.Getenv("SFTPGO_LOGIND_USER")
 	login_protocol := os.Getenv("SFTPGO_LOGIND_PROTOCOL")
 	if login_protocol != "OIDC" {
+		fmt.Println(login_protocol)
 		return
 	}
 	var parsed_user user
