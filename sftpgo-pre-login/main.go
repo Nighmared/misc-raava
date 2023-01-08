@@ -41,6 +41,6 @@ func main() {
 	}
 	var parsed_user user
 	json.Unmarshal([]byte(logged_in_user), &parsed_user)
-	fmt.Println(parsed_user)
+	fmt.Println("\n\n\n>>>>>>>>>>>>>>>>>>>>" + parsed_user.Username + "<<<<<<<<<<<<<<<<<<<<<<<<\n\n\n")
 
 }
