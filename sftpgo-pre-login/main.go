@@ -6,16 +6,11 @@ import (
 	"os"
 )
 
-type Customfields struct {
-	Storage_access bool
-}
-
 type user struct {
-	Id                 int
-	Status             int
-	Username           string
-	Email              string
-	Oidc_custom_fields Customfields
+	Id       int
+	Status   int
+	Username string
+	Email    string
 	//..... many more but do i even need that?
 
 }
@@ -37,11 +32,6 @@ func main() {
 	if parsed_user.Id != 0 {
 		fmt.Printf(`{"additional_info":"last logged in from %s"}`, login_ip)
 		//no need for all of the info if user already exists
-		return
-	}
-	if !parsed_user.Oidc_custom_fields.Storage_access {
-		//user isnt supposed to have storage access...
-		fmt.Print(`{"status":0}`)
 		return
 	}
 
